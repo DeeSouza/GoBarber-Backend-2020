@@ -1,10 +1,7 @@
 import { Router } from 'express';
 import { startOfHour, parseISO, isEqual } from 'date-fns';
 
-interface Appointment {
-	provider: string;
-	date: Date;
-}
+import Appointment from '../models/Appointment';
 
 const appointmentsRouter = Router();
 const appointments: Appointment[] = [];
@@ -27,10 +24,7 @@ appointmentsRouter.post('/', (request, response) => {
 		});
 	}
 
-	const appointment = {
-		provider,
-		date: parsedDate,
-	};
+	const appointment = new Appointment(provider, parsedDate);
 
 	appointments.push(appointment);
 
