@@ -3,6 +3,8 @@ import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 import User from '../models/Users';
 
+import authConfig from '../config/auth';
+
 interface Request {
 	email: string;
 	password: string;
@@ -10,6 +12,7 @@ interface Request {
 
 interface Response {
 	user: User;
+	token: string;
 }
 
 class AuthenticateUserService {
@@ -30,9 +33,14 @@ class AuthenticateUserService {
 			throw new Error('Credenciais de usuário não encontrado.');
 		}
 
-		const token = sign();
+		const { secret, expiresIn } = authConfig.jwt;
 
-		return { user };
+		const token = sign({}, secret, {
+			subject: user.id,
+			expiresIn,
+		});
+
+		return { user, token };
 	}
 }
 
