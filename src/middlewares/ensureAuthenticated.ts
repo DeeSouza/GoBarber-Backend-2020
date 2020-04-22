@@ -2,6 +2,8 @@ import { Request, Response, NextFunction } from 'express';
 import { verify } from 'jsonwebtoken';
 import authConfig from '../config/auth';
 
+import AppError from '../errors/AppError';
+
 interface TokenPayload {
 	iat: number;
 	exp: number;
@@ -16,7 +18,7 @@ export default function ensureAuthenticated(
 	const authHeader = request.headers.authorization;
 
 	if (!authHeader) {
-		throw new Error('O token enviado não é válido.');
+		throw new AppError('O token enviado não é válido.', 401);
 	}
 
 	const [, token] = authHeader.split(' ');
@@ -31,6 +33,6 @@ export default function ensureAuthenticated(
 
 		return next();
 	} catch {
-		throw new Error('O token enviado não é válido.');
+		throw new AppError('O token enviado não é válido.', 401);
 	}
 }
