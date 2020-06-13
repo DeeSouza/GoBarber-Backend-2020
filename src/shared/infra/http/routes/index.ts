@@ -6,9 +6,9 @@ import passwordRouter from '@modules/users/infra/http/routes/password.routes';
 
 const routes = Router();
 
-routes.use('/appointments', appointmentsRouter);
-routes.use('/users', usersRouter);
 routes.use('/sessions', sessionsRouter);
 routes.use('/password', passwordRouter);
+routes.use('/users', usersRouter);
+routes.use('/appointments', appointmentsRouter);
 
 export default routes;
