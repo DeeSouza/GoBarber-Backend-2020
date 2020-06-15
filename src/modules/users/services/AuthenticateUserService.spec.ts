@@ -25,12 +25,12 @@ describe('AuthenticateUser', () => {
 	it('should be able to authenticate', async () => {
 		const user = await createUser.execute({
 			name: 'John Doe',
-			email: 'johndoe@gmail.com',
+			email: 'johndoe@example.com',
 			password: '123456',
 		});
 
 		const response = await authenticateUser.execute({
-			email: 'johndoe@gmail.com',
+			email: 'johndoe@example.com',
 			password: '123456',
 		});
 
@@ -41,7 +41,7 @@ describe('AuthenticateUser', () => {
 	it('should not be able to authenticate with non existing user', async () => {
 		await expect(
 			authenticateUser.execute({
-				email: 'johndoe@gmail.com',
+				email: 'johndoe@example.com',
 				password: '123456',
 			}),
 		).rejects.toBeInstanceOf(AppError);
@@ -50,13 +50,13 @@ describe('AuthenticateUser', () => {
 	it('should not be able to authenticate with wrong password', async () => {
 		await createUser.execute({
 			name: 'John Doe',
-			email: 'johndoe@gmail.com',
+			email: 'johndoe@example.com',
 			password: '123456',
 		});
 
 		await expect(
 			authenticateUser.execute({
-				email: 'johndoe@gmail.com',
+				email: 'johndoe@example.com',
 				password: 'wrong-password',
 			}),
 		).rejects.toBeInstanceOf(AppError);
