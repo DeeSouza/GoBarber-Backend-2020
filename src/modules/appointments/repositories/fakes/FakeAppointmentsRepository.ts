@@ -52,6 +52,7 @@ class AppointmentsRepository implements IAppointmentsRepository {
 	}
 
 	public async create({
+		user_id,
 		provider_id,
 		date,
 	}: ICreateAppointmentDTO): Promise<Appointment> {
@@ -60,6 +61,7 @@ class AppointmentsRepository implements IAppointmentsRepository {
 		Object.assign(appointment, {
 			id: uuid(),
 			date,
+			user_id,
 			provider_id,
 		});
 
