@@ -1,4 +1,6 @@
+.env
 /node_modules
 tmp/*
 !tmp/.gitkeep
 *.log
+ormconfig.json
