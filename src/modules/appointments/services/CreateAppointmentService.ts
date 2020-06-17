@@ -3,9 +3,9 @@ import { injectable, inject } from 'tsyringe';
 
 import AppError from '@shared/errors/AppError';
 
-import Appointment from '../infra/typeorm/entities/Appointment';
+import INotificationsRepository from '@modules/notifications/repositories/INotificationsRepository';
 import IAppointmentsRepository from '../repositories/IAppointmentsRepository';
-import INotificationsRepository from '../../notifications/repositories/INotificationsRepository';
+import Appointment from '../infra/typeorm/entities/Appointment';
 
 interface IRequest {
 	user_id: string;
