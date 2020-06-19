@@ -49,10 +49,12 @@ class ListProviderMonthAvailabilityService {
 				return getDate(appointment.date) === day;
 			});
 
+			console.log(compareDate, Date.now(), isAfter(compareDate, Date.now()));
+
 			return {
 				day,
 				available:
-					isAfter(compareDate, new Date()) && appointmentsInDay.length < 10,
+					isAfter(compareDate, Date.now()) && appointmentsInDay.length < 10,
 			};
 		});
 
