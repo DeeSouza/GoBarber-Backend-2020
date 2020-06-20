@@ -49,8 +49,6 @@ class ListProviderMonthAvailabilityService {
 				return getDate(appointment.date) === day;
 			});
 
-			console.log(compareDate, Date.now(), isAfter(compareDate, Date.now()));
-
 			return {
 				day,
 				available:
