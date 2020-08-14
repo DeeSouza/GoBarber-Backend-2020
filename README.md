@@ -22,6 +22,9 @@
 - Redis
 - Multer (Upload de Arquivos)
 - Json Web Tokens (Autenticação JWT)
+- SES Mail AWS
+- Ethereal Mail
+- S3 Storage AWS
 
 ## My Setup DEV
 
@@ -31,4 +34,8 @@
 
 ## Docker
 
-    docker run --name gobarber_postgres -e MYSQL_ROOT_PASSWORD=docker -d postgres
+	docker run --name gobarber_postgres -e MYSQL_ROOT_PASSWORD=docker -d postgres
+
+	docker run --name gobarber_mongodb -p 27017:27017 -d -t mongo
+
+	docker run --name gobarber_redis 6379:6379 -d -t redis:alpine
